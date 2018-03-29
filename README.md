@@ -1,12 +1,16 @@
 # `pipe`
 
-`pipe` allows stages of functions to easily be assembled into concurent pipes.
-
 ![Badge](https://goreportcard.com/badge/github.com/jwowillo/pipe)
+
+`pipe` allows stages of functions to easily be assembled into concurent pipes.
 
 ## Using
 
 `import "github.com/jwowillo/pipe"`
+
+## Tests
+
+`go test`
 
 ## Documentation
 
