@@ -1,3 +1,5 @@
+// Package pipe allows Stages of functions to easily be assembled into concurent
+// pipes.
 package pipe
 
 import (

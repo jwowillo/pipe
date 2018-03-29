@@ -1,6 +1,8 @@
 # `pipe`
 
-`pipe` allows stages of functions to easily be assembled into a concurent pipe.
+`pipe` allows stages of functions to easily be assembled into concurent pipes.
+
+![Badge]('https://goreportcard.com/badge/github.com/jwowillo/pipe')
 
 ## Using
 
