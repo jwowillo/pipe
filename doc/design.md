@@ -18,20 +18,24 @@ StageFunc func(Item) Item
 `Stage`s.
 
 ```
-class Pipe([]Stage):
-* Get(Item): Get puts the Item in the Pipe to be processes.
-* Give() Item: Give blocks until an Item is done being processed and returns it.
+class Pipe(...Stage):
+* Receive(Item): Receive puts the Item in the Pipe to be processes.
+* Deliver() Item: Deliver blocks until an Item is done being processed and
+  returns it.
 ```
 
-`Pipe` connects Stages in the given order satisfying 4 and the rest of 1. `Get`
-and `Give` hide concurrency by immediately returning after putting an `Item` in
-the `Pipe` and blocking until an `Item` is done satisfying 5. Concurrent
-functions are started for every `Stage` whenever the `Pipe` has an `Item` that
-handles `Item`s concurrently when available then places them in the next
-`Stage` satisfying 2 and 3. These functions exit when the `Pipe` is empty.
+`Pipe` connects Stages in the given order satisfying 4 and the rest of 1.
+`Receive` and `Deliver` hide concurrency by immediately returning after putting
+an `Item` in the `Pipe` and blocking until an `Item` is done satisfying 5.
+Concurrent functions are started for every `Stage` whenever the `Pipe` has an
+`Item` that handles `Item`s concurrently when available then places them in the
+next `Stage` satisfying 2 and 3. These functions exit when the `Pipe` is empty.
+`Pipe` accepts varargs since the more common use-case involves a hard-coded list
+of `Stage`s.
 
 ```
-func Process(Pipe, []Item) []Item
+func Process(Pipe, ...Item) []Item
 ```
 
-`Process` is a utility to run many `Item`s through a `Pipe`.
+`Process` is a utility to run many `Item`s through a `Pipe`. It accepts varargs
+so that arguments don't need to be put in a `[]Item` from their original type.

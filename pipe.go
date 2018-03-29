@@ -30,7 +30,7 @@ type Pipe struct {
 }
 
 // New Pipe with all the Stages connected in the order given.
-func New(ss []Stage) *Pipe {
+func New(ss ...Stage) *Pipe {
 	return &Pipe{
 		m:      sync.Mutex{},
 		stages: append([]Stage{}, ss...),
@@ -38,8 +38,8 @@ func New(ss []Stage) *Pipe {
 	}
 }
 
-// Get the Item into the beginning of the Pipe.
-func (p *Pipe) Get(x Item) {
+// Receive the Item into the beginning of the Pipe.
+func (p *Pipe) Receive(x Item) {
 	p.m.Lock()
 	defer p.m.Unlock()
 	if p.isEmpty() {
@@ -49,8 +49,8 @@ func (p *Pipe) Get(x Item) {
 	go func() { p.links[0] <- x }()
 }
 
-// Give the item from the end of the Pipe once it's ready.
-func (p *Pipe) Give() Item {
+// Deliver the item from the end of the Pipe once it's ready.
+func (p *Pipe) Deliver() Item {
 	p.m.Lock()
 	defer p.m.Unlock()
 	x := <-p.links[len(p.links)-1]
@@ -86,13 +86,13 @@ func (p *Pipe) stop() {
 }
 
 // Process all the Items with the Pipe.
-func Process(p *Pipe, xs []Item) []Item {
+func Process(p *Pipe, xs ...Item) []Item {
 	for _, x := range xs {
-		p.Get(x)
+		p.Receive(x)
 	}
 	out := make([]Item, len(xs))
 	for i := range out {
-		out[i] = p.Give()
+		out[i] = p.Deliver()
 	}
 	return out
 }
