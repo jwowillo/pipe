@@ -18,6 +18,10 @@ func Example() {
 			return x.(string) + "c"
 		}),
 	)
+	p.Receive("")
+	fmt.Println(p.Deliver())
 	fmt.Println(pipe.Process(p, ""))
-	// Output: [abc]
+	// Output:
+	// abc
+	// [abc]
 }
