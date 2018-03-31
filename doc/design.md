@@ -1,21 +1,21 @@
 # Design
 
-## `pipe`
+## v1.0.0
 
 ```
 interface Stage:
 * Handle(Item) Item: Handles the Item to be moved through the Pipe.
 ```
 
-`Stage` corresponds to stages of computations in 1. Item refers to any type
+`Stage` corresponds to stages of computations in 1. `Item` refers to any type
 satsfying 6.
 
 ```
 StageFunc func(Item) Item
 ```
 
-`StageFunc` is a utility to convert functions which would satisfy `Stage` into
-`Stage`s.
+`StageFunc` is a wrapper that converts functions which would satisfy `Stage`
+into `Stage`s.
 
 ```
 class Pipe(...Stage):
@@ -39,3 +39,27 @@ func Process(Pipe, ...Item) []Item
 
 `Process` is a utility to run many `Item`s through a `Pipe`. It accepts varargs
 so that arguments don't need to be put in a `[]Item` from their original type.
+
+## v1.1.0
+
+```
+interface Consumer:
+* Consume(Item): Consumes the Item.
+```
+
+`Consumer` corresponds to the consumer of `Item`s in 1 and receives `Item`s as
+they come out of the `Pipe`.
+
+```
+ConsumerFunc func(Item)
+```
+
+`ConsumerFunc` is a wrapper that converts functions which would satisfy
+`Consumer` into `Consumer`s.
+
+```
+ProcessAndConsume(Pipe, Consumer, ...Item)
+```
+
+`ProcessAndConsume` is a utility that works like `Process` except passes the
+`Item`s to the `Consumer` as they come out of the `Pipe`.
