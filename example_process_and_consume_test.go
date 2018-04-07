@@ -6,7 +6,7 @@ import (
 	"github.com/jwowillo/pipe"
 )
 
-func Example() {
+func Example_processAndConsume() {
 	p := pipe.New(
 		pipe.StageFunc(func(x pipe.Item) pipe.Item {
 			return x.(string) + "a"
@@ -18,8 +18,10 @@ func Example() {
 			return x.(string) + "c"
 		}),
 	)
-	p.Receive("")
-	fmt.Println(p.Deliver())
+	f := pipe.ConsumerFunc(func(x pipe.Item) {
+		fmt.Println(x)
+	})
+	pipe.ProcessAndConsume(p, f, "")
 	// Output:
 	// abc
 }

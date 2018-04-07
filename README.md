@@ -18,4 +18,4 @@
 
 Documentation is in directory 'doc' as Markdown files for the project
 requirements and design. PDFs generated from the Markdown files are also
-included. API documentation is at 'https://godoc.org/jwowillo/pipe'.
+included. API documentation is at https://godoc.org/jwowillo/pipe.
