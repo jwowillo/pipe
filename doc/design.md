@@ -61,5 +61,39 @@ ConsumerFunc func(Item)
 ProcessAndConsume(Pipe, Consumer, ...Item)
 ```
 
-`ProcessAndConsume` is a utility that works like `Process` except passes the
-`Item`s to the `Consumer` as they come out of the `Pipe`.
+`ProcessAndConsume` is a utility that works like `Process` except it passes the
+`Item`s to the `Consumer` as they come out of the `Pipe` as in 1.
+
+## v1.2.0
+
+```
+interface Producer:
+* Produce() (Item, bool)
+```
+
+`Producer` corresponds to the producer of `Item`s in 1 and gives `Item`s to the
+`Pipe` until the `Producer` returns false. The `Item` returned with the false
+value is ignored.
+
+```
+ProducerFunc func() (Item, bool)
+```
+
+`ProducerFunc` is a wrapper that converts functions which would satisfy
+`Producer` into `Producer`s.
+
+```
+func ProduceAndProcess(Pipe, Producer) []Item
+```
+
+`ProduceAndProcess` is a utility that works like `Process` except it produces
+`Item`s from the `Producer` to pass into the `Pipe` as in 1.
+
+```
+func ProduceProcessAndConsume(Pipe, Producer, Consumer)
+```
+
+`ProduceProcessAndConsume` is a utility that works like `Process` except it
+produces `Item`s from the `Producer` to pass into the `Pipe` and it passes the
+`Item`s to the `Consumer` as they come out of the `Pipe` as in 1.
+

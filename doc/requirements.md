@@ -11,5 +11,10 @@
 
 ## v1.1.0
 
-1. A wrapper should be provided to process many items and pass them to a
-   consumer as they're done.
+1. A wrapper should be provided to process items and pass them to a consumer as
+   they're done.
+
+## v1.2.0
+
+1. A wrapper should be provided to produce items and pass them into all pipe
+   interfaces.

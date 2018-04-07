@@ -6,6 +6,8 @@
 
 ## Using
 
+`import "gopkg.in/jwowillo/pipe.v1"`
+
 `import "github.com/jwowillo/pipe"`
 
 ## Tests
@@ -16,4 +18,4 @@
 
 Documentation is in directory 'doc' as Markdown files for the project
 requirements and design. PDFs generated from the Markdown files are also
-included.
+included. API documentation is at https://godoc.org/jwowillo/pipe.
