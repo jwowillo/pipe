@@ -2,7 +2,7 @@
 
 ![Badge](https://goreportcard.com/badge/github.com/jwowillo/pipe)
 
-`pipe` allows stages of functions to easily be assembled into concurent pipes.
+`pipe` allows computation-stages to be assembled into concurent-pipes.
 
 ## Using
 
