@@ -35,7 +35,7 @@ the `Pipe` is empty. `Pipe` accepts varargs since the more common use-case is a
 hard-coded list of `Stage`s.
 
 ```
-func Process(Pipe, ...Item) []Item
+Process(Pipe, ...Item) []Item
 ```
 
 `Process` is a utility to run many `Item`s through a `Pipe` (8). It accepts
@@ -83,14 +83,14 @@ ProducerFunc func() (Item, bool)
 `Producer` into `Producer`s.
 
 ```
-func ProduceAndProcess(Pipe, Producer) []Item
+ProduceAndProcess(Pipe, Producer) []Item
 ```
 
 `ProduceAndProcess` is a utility that works like `Process` except it produces
 `Item`s from the `Producer` to pass into the `Pipe` (2).
 
 ```
-func ProduceProcessAndConsume(Pipe, Producer, Consumer)
+ProduceProcessAndConsume(Pipe, Producer, Consumer)
 ```
 
 `ProduceProcessAndConsume` is a utility that works like `Process` except it
